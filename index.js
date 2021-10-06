@@ -72,10 +72,13 @@ bot.on("interactionCreate", async (interaction) => {
   const { description } = interaction.message.embeds[0];
   const textToCopy = description.split("```");
   const newEmbed = { ...interaction.message.embeds };
+
+  console.log(interaction);
   newEmbed[0].color = 3133855;
   newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
   await interaction.update({ embeds: [newEmbed[0]] });
-  clipboardy.write(textToCopy[1]);
+  // clipboardy.write(textToCopy[1]);
+  document.execCommand("copy");
 });
 
 bot.on("messageUpdate", (oldMsg, newMsg) => {
