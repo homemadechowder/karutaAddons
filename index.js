@@ -38,13 +38,12 @@ const karutaBurnHandler = (tag, message, ed, currUser) => {
         .setLabel("Copy")
         .setStyle("PRIMARY")
     );
-    console.log(currUser);
 
     const embed = new MessageEmbed()
       .setColor("#E97451")
       .setAuthor("Karuta Multi Tag", "https://i.imgur.com/F3yStSS.png")
       .setDescription(
-        `<@${currUser.id}>, here is your Karuta Code\n` +
+        `<@${currUser.id}>, here's the code to your tagged cards\n` +
           "```" +
           karutaBurn(currentTag, cards, ed) +
           "```"
@@ -67,15 +66,16 @@ const karutaBurnHandler = (tag, message, ed, currUser) => {
 bot.on("ready", () => {
   console.info(`Logged in as ${bot.user.tag}!`);
   bot.user.setUsername("Karuta Multi Tag");
-  // bot.channels.get('875133028588982283').send('bruh');
 });
 
 bot.on("interactionCreate", async (interaction) => {
   const { description } = interaction.message.embeds[0];
   const textToCopy = description.split("```");
+  const newEmbed = { ...interaction.message.embeds };
+  newEmbed[0].color = 3133855;
+  newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
+  await interaction.update({ embeds: [newEmbed[0]] });
   clipboardy.writeSync(textToCopy[1]);
-
-  await interaction.reply("Copied");
 });
 
 bot.on("messageUpdate", (oldMsg, newMsg) => {
