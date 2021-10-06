@@ -90,10 +90,11 @@ bot.on("messageCreate", async (msg) => {
   }
 
   if (parsed.command === BOT_COMMAND) {
-    if (msg.channel.id !== "875133028588982283") {
-      msg.reply("You can't run this command on this channel");
-      return;
-    }
+    // WIP
+    // if (msg.channel.id !== "875133028588982283") {
+    //   msg.reply("You can't run this command on this channel");
+    //   return;
+    // }
 
     if (typeof currentCard.embeds === "undefined") {
       msg.reply(
