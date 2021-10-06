@@ -75,7 +75,7 @@ bot.on("interactionCreate", async (interaction) => {
   newEmbed[0].color = 3133855;
   newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
   await interaction.update({ embeds: [newEmbed[0]] });
-  clipboardy.writeSync(textToCopy[1]);
+  clipboardy.write(textToCopy[1]);
 });
 
 bot.on("messageUpdate", (oldMsg, newMsg) => {
