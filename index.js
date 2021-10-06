@@ -84,7 +84,6 @@ bot.on("messageUpdate", (oldMsg, newMsg) => {
 
 bot.on("messageCreate", async (msg) => {
   setCurrentCard(msg);
-
   const parsed = parse(msg, "~", { allowSpaceBeforeCommand: true });
   if (!parsed.success) {
     return;
