@@ -12,7 +12,7 @@ This discord bot will help you tag multiple cards at a time after you called a k
 - Prefix: ~kt
 - Subcommands: 
     - <tag_name> your existing tag name, will default to burn if nothing is entered
-    - <edition>* the specific edition you would like to tag, will default to 1 is nothing is entered. If you don't enter a tag name before edition, this won't work as you imagined
+    - <edition> the specific edition you would like to tag, will default to 1 is nothing is entered. If you don't enter a tag name before edition, this won't work as you imagined
       * an option to tag all will be included in a later version soonTM
 - Examples: 
     - ~kt - this will tag all the ed2 cards as burn
