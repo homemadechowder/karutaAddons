@@ -28,6 +28,7 @@
     "discord-command-parser": "^1.5.3",
     "discord.js": "^13.2.0",
     "dotenv": "^8.2.0",
+    "lodash": "^4.17.21",
     "prettier": "^2.4.1",
     "xsel": "^1.0.0"
   },

@@ -12,11 +12,17 @@ const bot = new Discord.Client({
   ],
 });
 const { parse } = require("discord-command-parser");
+const _ = require("lodash");
 const TOKEN = process.env.TOKEN;
 const karutaBurn = require("./karutaBurn");
-const clipboardy = require("clipboardy");
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
 const BOT_COMMAND = "kt";
+const RANDOM_IMAGE = [
+  "https://i.imgur.com/6LvWVdz.png",
+  "https://i.imgur.com/65jJIDg.png",
+  "https://i.imgur.com/gKPwtHp.png",
+  "https://i.imgur.com/4leObrK.png",
+];
 
 bot.login(TOKEN);
 
@@ -36,7 +42,7 @@ const karutaBurnHandler = (tag, message, ed, currUser) => {
     const row = new MessageActionRow().addComponents(
       new MessageButton()
         .setCustomId("primary")
-        .setLabel("Copy")
+        .setLabel("🎁")
         .setStyle("PRIMARY")
     );
 
@@ -44,7 +50,7 @@ const karutaBurnHandler = (tag, message, ed, currUser) => {
       .setColor("#E97451")
       .setAuthor("Karuta Multi Tag", "https://i.imgur.com/F3yStSS.png")
       .setDescription(
-        `<@${currUser.id}>, here's the code to your tagged cards\n` +
+        `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
           "```" +
           karutaBurn(currentTag, cards, ed) +
           "```"
@@ -70,16 +76,11 @@ bot.on("ready", () => {
 });
 
 bot.on("interactionCreate", async (interaction) => {
-  const { description } = interaction.message.embeds[0];
-  const textToCopy = description.split("```");
   const newEmbed = { ...interaction.message.embeds };
-
-  console.log(interaction);
   newEmbed[0].color = 3133855;
-  newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
-  await interaction.update({ embeds: [newEmbed[0]] });
-  clipboardy.write(textToCopy[1]);
-  // copy(textToCopy[1]);
+  const randomImageURL = _.sample(RANDOM_IMAGE);
+  newEmbed[0].image.url = randomImageURL;
+  await interaction.update({ embeds: [newEmbed[0]], components: [] });
 });
 
 bot.on("messageUpdate", (oldMsg, newMsg) => {
