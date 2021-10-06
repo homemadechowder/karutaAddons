@@ -77,6 +77,7 @@ bot.on("interactionCreate", async (interaction) => {
   newEmbed[0].color = 3133855;
   newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
   copy(textToCopy[1], async function () {
+    console.log(textToCopy[1]);
     await interaction.update({ embeds: [newEmbed[0]] });
   });
 });
