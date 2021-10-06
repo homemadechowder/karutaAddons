@@ -15,7 +15,7 @@ const { parse } = require("discord-command-parser");
 const TOKEN = process.env.TOKEN;
 const karutaBurn = require("./karutaBurn");
 const clipboardy = require("clipboardy");
-const { copy } = require("copy-paste").global();
+const { copy } = require("copy-paste");
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
 const BOT_COMMAND = "kt";
 
@@ -74,8 +74,6 @@ bot.on("interactionCreate", async (interaction) => {
   const { description } = interaction.message.embeds[0];
   const textToCopy = description.split("```");
   const newEmbed = { ...interaction.message.embeds };
-
-  console.log(interaction);
   newEmbed[0].color = 3133855;
   newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
   await interaction.update({ embeds: [newEmbed[0]] });
