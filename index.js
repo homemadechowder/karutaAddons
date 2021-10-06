@@ -103,7 +103,6 @@ bot.on("messageCreate", async (msg) => {
     }
     const tag = parsed.arguments[0];
     const ed = parsed.arguments[1];
-
     karutaBurnHandler(tag || "burn", currentCard, ed, msg.author);
   }
 });
