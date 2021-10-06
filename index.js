@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 require("dotenv").config();
+
 const Discord = require("discord.js");
 const bot = new Discord.Client({
   intents: [
@@ -14,6 +15,7 @@ const { parse } = require("discord-command-parser");
 const TOKEN = process.env.TOKEN;
 const karutaBurn = require("./karutaBurn");
 const clipboardy = require("clipboardy");
+const { copy } = require("copy-paste").global();
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
 const BOT_COMMAND = "kt";
 
@@ -78,7 +80,7 @@ bot.on("interactionCreate", async (interaction) => {
   newEmbed[0].image.url = "https://i.imgur.com/65jJIDg.png";
   await interaction.update({ embeds: [newEmbed[0]] });
   // clipboardy.write(textToCopy[1]);
-  document.execCommand("copy");
+  copy(textToCopy[1]);
 });
 
 bot.on("messageUpdate", (oldMsg, newMsg) => {
