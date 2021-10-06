@@ -10,9 +10,12 @@ module.exports = function karutaBurn(tag, string, ed = 1) {
     }
     const star = lineArr[2].split(" · ")[3];
 
-    if (star !== `◈${ed}`) {
-      return;
+    if (ed !== "*") {
+      if (star !== `◈${ed}`) {
+        return;
+      }
     }
+
     if (valid.test(lineArr[1])) {
       resultString += lineArr[1].trim() + " ";
     } else {
