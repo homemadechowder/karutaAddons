@@ -57,7 +57,7 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
           karutaBurn(currentTag, cards, ed) +
           "```\n" +
           `${
-            helpText
+            helpText === true
               ? `Did you mean: \n` + "```" + `~kt burn ${ed}` + "```"
               : ""
           }`
