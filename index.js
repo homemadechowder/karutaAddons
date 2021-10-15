@@ -36,6 +36,28 @@ const setCurrentCard = (msg) => {
   return;
 };
 
+const getEmbedDescription = (helpText) => {
+  if (helpText) {
+    return (
+      `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
+      "```" +
+      karutaBurn(currentTag, cards, ed) +
+      "```\n" +
+      `Did you mean: \n` +
+      "```" +
+      `~kt burn ${ed}` +
+      "```"
+    );
+  }
+
+  return (
+    `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
+    "```" +
+    karutaBurn(currentTag, cards, ed) +
+    "```\n"
+  );
+};
+
 const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
   if (message.embeds[0]?.title === "Card Collection") {
     const currentTag = tag === "" ? "burn" : tag;
@@ -51,17 +73,7 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
     const embed = new MessageEmbed()
       .setColor("#E97451")
       .setAuthor("Karuta Multi Tag", "https://i.imgur.com/F3yStSS.png")
-      .setDescription(
-        `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
-          "```" +
-          karutaBurn(currentTag, cards, ed) +
-          "```\n" +
-          `${
-            helpText === true
-              ? `Did you mean: \n` + "```" + `~kt burn ${ed}` + "```"
-              : ""
-          }`
-      )
+      .setDescription(getEmbedDescription(helpText))
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
       )
