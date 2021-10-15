@@ -16,6 +16,7 @@ const _ = require("lodash");
 const TOKEN = process.env.TOKEN;
 const karutaBurn = require("./karutaBurn");
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
+
 const BOT_COMMAND = "kt";
 const RANDOM_IMAGE = [
   "https://i.imgur.com/6LvWVdz.png",
@@ -23,6 +24,7 @@ const RANDOM_IMAGE = [
   "https://i.imgur.com/gKPwtHp.png",
   "https://i.imgur.com/4leObrK.png",
 ];
+const COMMAND_EDITION = [1, 2, 3, "*"];
 
 bot.login(TOKEN);
 
@@ -34,7 +36,7 @@ const setCurrentCard = (msg) => {
   return;
 };
 
-const karutaBurnHandler = (tag, message, ed, currUser) => {
+const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
   if (message.embeds[0]?.title === "Card Collection") {
     const currentTag = tag === "" ? "burn" : tag;
     const cards = message.embeds[0].description;
@@ -53,7 +55,8 @@ const karutaBurnHandler = (tag, message, ed, currUser) => {
         `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
           "```" +
           karutaBurn(currentTag, cards, ed) +
-          "```"
+          "```\n" +
+          `${helpText && `Did you mean: \n` + "```" + `~kt burn ${ed}` + "```"}`
       )
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
@@ -94,6 +97,7 @@ bot.on("messageCreate", async (msg) => {
     return;
   }
 
+  // If command is hit
   if (parsed.command === BOT_COMMAND) {
     // WIP
     // if (msg.channel.id !== "875133028588982283") {
@@ -109,6 +113,12 @@ bot.on("messageCreate", async (msg) => {
     }
     const tag = parsed.arguments[0];
     const ed = parsed.arguments[1];
-    karutaBurnHandler(tag || "burn", currentCard, ed, msg.author);
+    karutaBurnHandler(
+      tag || "burn",
+      currentCard,
+      ed,
+      msg.author,
+      COMMAND_EDITION.includes(ed)
+    );
   }
 });
