@@ -56,7 +56,11 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
           "```" +
           karutaBurn(currentTag, cards, ed) +
           "```\n" +
-          `${helpText && `Did you mean: \n` + "```" + `~kt burn ${ed}` + "```"}`
+          `${
+            helpText
+              ? `Did you mean: \n` + "```" + `~kt burn ${ed}` + "```"
+              : ""
+          }`
       )
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
