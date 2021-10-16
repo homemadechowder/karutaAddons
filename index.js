@@ -24,7 +24,7 @@ const RANDOM_IMAGE = [
   "https://i.imgur.com/gKPwtHp.png",
   "https://i.imgur.com/4leObrK.png",
 ];
-const COMMAND_EDITION = [1, 2, 3, "*"];
+const COMMAND_EDITION = ["1", "2", "3", "*"];
 
 bot.login(TOKEN);
 
@@ -77,7 +77,12 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
         `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
           "```" +
           karutaBurn(currentTag, cards, ed) +
-          "```\n" + `${helpText && '?realy'}`
+          "```\n" +
+          `${
+            helpText
+              ? "Did you mean: \n" + "```" + `~kt burn ${tag}` + "```\n"
+              : ""
+          }`
       )
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
@@ -139,7 +144,7 @@ bot.on("messageCreate", async (msg) => {
       currentCard,
       ed,
       msg.author,
-      COMMAND_EDITION.includes(ed)
+      COMMAND_EDITION.includes(tag)
     );
   }
 });
