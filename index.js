@@ -73,7 +73,12 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
     const embed = new MessageEmbed()
       .setColor("#E97451")
       .setAuthor("Karuta Multi Tag", "https://i.imgur.com/F3yStSS.png")
-      .setDescription(getEmbedDescription(helpText))
+      .setDescription(
+        `<@${currUser.id}>, Copy and paste the following code to tag your cards:\n` +
+          "```" +
+          karutaBurn(currentTag, cards, ed) +
+          "```\n" + `${helpText && '?realy'}`
+      )
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
       )
