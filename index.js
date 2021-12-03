@@ -18,12 +18,7 @@ const karutaBurn = require("./karutaBurn");
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
 
 const BOT_COMMAND = "kt";
-const RANDOM_IMAGE = [
-  "https://i.imgur.com/6LvWVdz.png",
-  "https://i.imgur.com/65jJIDg.png",
-  "https://i.imgur.com/gKPwtHp.png",
-  "https://i.imgur.com/4leObrK.png",
-];
+const RANDOM_IMAGE = ["https://i.imgur.com/vvZRFRv.png"];
 const COMMAND_EDITION = ["1", "2", "3", "*"];
 
 bot.login(TOKEN);
@@ -87,7 +82,7 @@ const karutaBurnHandler = (tag, message, ed, currUser, helpText) => {
       .setThumbnail(
         `https://cdn.discordapp.com/avatars/${currUser.id}/${currUser.avatar}.png`
       )
-      .setImage("https://i.imgur.com/cRaaTrl.png");
+      .setImage("https://i.imgur.com/gtoBqvT.png");
 
     message.channel.send({
       content: " ",
