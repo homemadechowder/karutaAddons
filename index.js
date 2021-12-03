@@ -18,7 +18,10 @@ const karutaBurn = require("./karutaBurn");
 const { MessageActionRow, MessageButton, MessageEmbed } = Discord;
 
 const BOT_COMMAND = "kt";
-const RANDOM_IMAGE = ["https://i.imgur.com/vvZRFRv.png"];
+const RANDOM_IMAGE = [
+  "https://i.imgur.com/vvZRFRv.png",
+  "https://i.imgur.com/MNdB303.png",
+];
 const COMMAND_EDITION = ["1", "2", "3", "*"];
 
 bot.login(TOKEN);
